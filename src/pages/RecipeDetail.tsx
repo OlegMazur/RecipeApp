@@ -14,13 +14,7 @@ interface Recipe {
   [key: string]: string | null; // Динамічний доступ до інгредієнтів
 }
 
-// const fetchRecipeById = async (id: string) => {
-//   const response = await fetch(
-//     `https://www.themealdb.com/api/json/v1/1/lookup.php?i=${id}`
-//   );
-//   const data = await response.json();
-//   return data.meals[0];
-// };
+
 
 const RecipeDetail: React.FC = () => {
   const { id } = useParams<{ id: string }>(); // Отримання ID з URL
