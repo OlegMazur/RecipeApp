@@ -2,6 +2,7 @@ import { useQuery } from "@tanstack/react-query";
 import { searchMeals } from "../api/mealsApi";
 import { useState } from "react";
 import RecipeCard from "../components/RecipeCard";
+import SearchBar from "../components/SearchBar";
 
 const RecipesPage = () => {
   const [searchQuery, setSearchQuery] = useState("");
@@ -16,6 +17,7 @@ const RecipesPage = () => {
 
   return (
     <div>
+      <SearchBar setSearchQuery={setSearchQuery} />
       <div className="recipe-grid">
         {meals.map((meal: any) => (
           <RecipeCard key={meal.idMeal} meal={meal} />
