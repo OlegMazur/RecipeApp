@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState } from "react";
 import { debounce } from "lodash";
 
 type SearchBarProps = {
@@ -6,7 +6,7 @@ type SearchBarProps = {
 };
 
 const SearchBar = ({ setSearchQuery }: SearchBarProps) => {
-  const [input, setInput] = useState('');
+  const [input, setInput] = useState("");
 
   const debouncedSearch = debounce((query: string) => {
     setSearchQuery(query);
@@ -17,14 +17,7 @@ const SearchBar = ({ setSearchQuery }: SearchBarProps) => {
     debouncedSearch(e.target.value);
   };
 
-  return (
-    <input
-      type="text"
-      placeholder="Search for a recipe..."
-      value={input}
-      onChange={handleChange}
-    />
-  );
+  return <input type="text" placeholder="Search for a recipe..." value={input} onChange={handleChange} />;
 };
 
 export default SearchBar;

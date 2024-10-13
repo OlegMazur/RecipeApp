@@ -1,9 +1,9 @@
-import React from 'react';
-import { useParams } from 'react-router-dom';
-import { useQuery } from '@tanstack/react-query';
-import { getMealById } from '../api/mealsApi';
+import React from "react";
+import { useParams } from "react-router-dom";
+import { useQuery } from "@tanstack/react-query";
+import { getMealById } from "../api/mealsApi";
 
-interface Recipe {
+export interface Recipe {
   idMeal: string;
   strMeal: string;
   strCategory: string;
@@ -11,23 +11,24 @@ interface Recipe {
   strInstructions: string;
   strMealThumb: string;
   strYoutube: string;
-  [key: string]: string | null; // Динамічний доступ до інгредієнтів
+  [key: string]: string | null;
 }
 
-
-
 const RecipeDetail: React.FC = () => {
-  const { id } = useParams<{ id: string }>(); // Отримання ID з URL
-  const { data: recipe, isLoading, error } = useQuery<Recipe>({
-    queryKey:['recipe', id],
-    queryFn:() => getMealById(id!)
+  const { id } = useParams<{ id: string }>();
+  const {
+    data: recipe,
+    isLoading,
+    error,
+  } = useQuery<Recipe>({
+    queryKey: ["recipe", id],
+    queryFn: () => getMealById(id!),
   });
 
   if (isLoading) return <p>Loading...</p>;
   if (error) return <p>Something went wrong...</p>;
   if (!recipe) return <p>Recipe not found.</p>;
 
-  // Отримання інгредієнтів і їхніх кількостей
   const ingredients = Array.from({ length: 20 })
     .map((_, i) => ({
       ingredient: recipe[`strIngredient${i + 1}`],
@@ -36,7 +37,7 @@ const RecipeDetail: React.FC = () => {
     .filter((item) => item.ingredient);
 
   return (
-    <div style={{ padding: '20px' }}>
+    <div style={{ padding: "20px" }}>
       <h1>{recipe.strMeal}</h1>
       <img src={recipe.strMealThumb} alt={recipe.strMeal} width="300" />
       <p>
