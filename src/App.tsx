@@ -5,7 +5,8 @@ import SelectedRecipes from "./pages/SelectedRecipes";
 
 function App() {
   return (
-    <Router>
+    <Router basename="/RecipeApp">
+      
       <Routes>
         <Route path="/" element={<RecipesPage />} />
         <Route path="/recipe/:id" element={<RecipeDetail />} />
